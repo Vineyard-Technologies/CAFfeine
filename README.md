@@ -1,4 +1,3 @@
-# Construct Automation Framework
 ![CAFfiene Logo](images/logo.png)
 
 [![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)](https://www.java.com/)
@@ -183,20 +182,6 @@ Adjust logging levels in `logback.xml`:
 - `warn` - Warning messages
 - `error` - Error messages only (default)
 
-### Common Issues
-
-1. **Browser Driver Issues:** WebDriverManager handles this automatically
-2. **Element Not Found:** Check XPath selectors in `Xpaths.java`
-3. **Timing Issues:** Use WebDriverWait for dynamic content
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
 ## 📝 Best Practices
 
 - **Page Object Model:** Keep XPaths organized in `Xpaths.java`
@@ -216,23 +201,4 @@ Adjust logging levels in `logback.xml`:
 
 ## 📄 License
 
-This project is licensed under the terms specified in the [LICENSE](LICENSE) file.
-
-## 🆘 Support
-
-For issues and questions:
-- Create an issue on GitHub
-- Check existing documentation
-- Review test examples in the codebase
-
-## 🏗️ Roadmap
-
-- [ ] Add support for mobile testing
-- [ ] Implement parallel test execution
-- [ ] Add screenshot capture on failures
-- [ ] Integrate with CI/CD pipelines
-- [ ] Add performance testing capabilities
-
----
-
-**Built with ❤️ for the Construct community**
+This project is licensed under the [AGPL 3.0 License](https://www.gnu.org/licenses/agpl-3.0.html.en) - see the [LICENSE](LICENSE) file for details.
