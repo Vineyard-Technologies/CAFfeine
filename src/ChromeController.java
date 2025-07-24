@@ -1,62 +1,35 @@
-import java.time.Duration;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-/**
- * <h1>Chrome Controller</h1>
- * A simple script that opens Chrome, waits 5 seconds, and then closes it.
- *
- * @author laserwolve
- */
+
 public class ChromeController {
 
-    /**
-     * Main method to execute the Chrome automation script.
-     * 
-     * @param args command line arguments (not used)
-     */
     public static void main(String[] args) {
-        WebDriver driver = null;
+        
+        WebDriverManager.chromedriver().setup();       
+
+        WebDriver driver = new ChromeDriver(new ChromeOptions());
+        
+        driver.get("https://editor.construct.net/");
+
+        WebDriverWait wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
+        WebElement noThanksButton = wait.until(
+            ExpectedConditions.elementToBeClickable(By.xpath(Xpaths.Dialog.Welcome.noThanksNotNow))
+        );
+        noThanksButton.click();
         
         try {
-            // Setup ChromeDriver using WebDriverManager
-            WebDriverManager.chromedriver().setup();
-            
-            // Create Chrome options for better control
-            ChromeOptions options = new ChromeOptions();
-            // Add any desired Chrome options here
-            // options.addArguments("--headless"); // Uncomment for headless mode
-            
-            // Initialize ChromeDriver
-            driver = new ChromeDriver(options);
-            
-            System.out.println("Chrome browser opened successfully!");
-            
-            // Navigate to a blank page
-            driver.get("about:blank");
-            
-            // Wait for 5 seconds
-            System.out.println("Waiting for 5 seconds...");
             Thread.sleep(5000);
-            
-            System.out.println("Closing Chrome browser...");
-            
         } catch (InterruptedException e) {
-            System.err.println("Thread was interrupted: " + e.getMessage());
             Thread.currentThread().interrupt();
-        } catch (Exception e) {
-            System.err.println("An error occurred: " + e.getMessage());
-            e.printStackTrace();
-        } finally {
-            // Ensure the browser is closed even if an exception occurs
-            if (driver != null) {
-                driver.quit();
-                System.out.println("Chrome browser closed successfully!");
-            }
+            System.err.println("Thread was interrupted: " + e.getMessage());
         }
     }
 }
