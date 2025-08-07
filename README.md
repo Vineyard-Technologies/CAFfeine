@@ -2,25 +2,13 @@
 
 [![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)](https://www.java.com/)
 [![Selenium](https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=selenium&logoColor=white)](https://www.selenium.dev/)
-[![Maven](https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apache-maven&logoColor=white)](https://maven.apache.org/)
 
-A comprehensive automation and testing framework built with Selenium WebDriver and Java, specifically designed for testing [Construct](https://www.construct.net/) applications and projects. This framework provides a robust foundation for automated testing with WebDriverManager for browser management and Logback for logging.
 
-## 🚀 Features
-
-- **Selenium WebDriver 4.32.0** - Latest Selenium features and improvements
-- **WebDriverManager 6.1.0** - Automatic browser driver management
-- **Logback Logging** - Comprehensive logging with configurable levels
-- **JUnit 5 Integration** - Modern testing framework support
-- **Cross-Browser Testing** - Support for Chrome, Edge, and other browsers
-- **Construct-Specific Methods** - Specialized methods for testing Construct applications
-- **Page Object Model** - Organized XPath management and element handling
-- **Utility Methods** - Rich set of helper methods for common test operations
+### An automation framework for [Construct](https://www.construct.net/)
 
 ## 📋 Prerequisites
 
 - **Java 8+** - Java Development Kit
-- **Maven 3.6+** - Build and dependency management
 - **Supported Browsers** - Chrome, Edge, Firefox (drivers managed automatically)
 
 ## 🛠️ Installation
@@ -31,104 +19,90 @@ A comprehensive automation and testing framework built with Selenium WebDriver a
    cd ConstructAutomationFramework
    ```
 
-2. **Install dependencies:**
-   ```bash
-   mvn clean install
-   ```
+2. **No additional setup required!** - Dependencies are included in the `lib/` directory
 
 3. **Verify installation:**
-   ```bash
-   mvn test
+   ```powershell
+   cd src
+   .\run_chrome_controller.ps1
    ```
 
 ## 📁 Project Structure
 
 ```
-ConstructAutomationFramework/
+CAFfeine/
 ├── src/
-│   └── constructAutomation/
-│       ├── DaggerQuestTest.java    # Sample test implementation
-│       ├── Methods.java            # Core automation methods
-│       ├── Position.java           # Position utilities
-│       └── Xpaths.java            # XPath repository
-├── resources/
-│   └── logback.xml                # Logging configuration
+│   ├── ChromeController.java       # Main automation controller
+│   ├── Methods.java               # Core automation methods
+│   ├── Position.java              # Position utilities
+│   ├── Xpaths.java               # XPath repository
+│   └── run_chrome_controller.ps1  # PowerShell runner script
+├── lib/
+│   ├── selenium-java-4.34.0/     # Selenium WebDriver
+│   └── webdrivermanager-6.2.0/   # WebDriver management
 ├── images/
-│   └── caffienelogo.png           # Project assets
-├── pom.xml                        # Maven configuration
+│   └── logo.png                   # Project assets
+├── LICENSE                        # License file
 └── README.md                      # This file
 ```
 
 ## 🔧 Configuration
 
-### Logback Configuration
-
-The framework uses Logback for logging. Configure logging levels in `resources/logback.xml`:
-
-```xml
-<configuration>
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36}.%M\(%line\) - %msg%n</pattern>
-        </encoder>
-    </appender>
-    <root level="error">
-        <appender-ref ref="STDOUT" />
-    </root>
-</configuration>
-```
-
 ### Browser Configuration
 
 WebDriverManager automatically handles browser driver downloads and management. No manual driver setup required!
+
+### Dependencies
+
+All required dependencies are included in the `lib/` directory:
+- **Selenium Java 4.34.0** - Web automation framework
+- **WebDriverManager 6.2.0** - Automatic driver management
 
 ## 🧪 Writing Tests
 
 ### Basic Test Structure
 
 ```java
-package constructAutomation;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
-import org.junit.jupiter.api.Test;
+public class MyConstructTest extends Methods {
 
-class MyConstructTest extends Methods {
-
-    @Test
-    void testConstructApplication() {
-        // Start the desktop client
-        startDesktopClient();
+    public static void main(String[] args) {
+        // Setup WebDriver
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver(new ChromeOptions());
         
-        // Perform test actions
-        click("playButton");
+        // Navigate to Construct
+        driver.get("https://editor.construct.net/");
         
-        // Verify results
-        verifyTrue("Game started successfully", 
-            (boolean) executeJavascript("return runtime.layout.getLayer('gameLayer').isVisible"));
+        // Perform test actions using Methods class
+        // (Implementation details in Methods.java)
         
         // Clean up
-        quit();
+        driver.quit();
     }
 }
 ```
 
 ### Available Methods
 
-The `Methods` class provides numerous utility methods:
+The `Methods` class provides numerous utility methods for browser automation:
 
 - **Browser Management:**
-  - `startDesktopClient()` - Initialize browser for Construct testing
-  - `quit()` - Close browser and clean up resources
+  - WebDriver setup and configuration
+  - Navigation and window management
 
 - **Element Interaction:**
-  - `click(String xpath)` - Click on elements
-  - `sendKeys(String xpath, String text)` - Input text
-  - `verifyTrue(String message, boolean condition)` - Assertions
+  - `click()` methods for various element types
+  - Text input and form handling
+  - Element waiting and synchronization
 
-- **JavaScript Execution:**
-  - `executeJavascript(String script)` - Execute JavaScript in browser context
-
-- **Verification:**
-  - `verifyThrows(String message, Class<T> exception, ThrowingRunnable runnable)` - Exception testing
+- **File Operations:**
+  - File upload and download handling
+  - Project management utilities
 
 ### XPath Management
 
@@ -140,64 +114,77 @@ click(Xpaths.AccountDropdown.logIn);
 click(Xpaths.Dialog.AnimationsEditor.Animations.addAnimation);
 ```
 
-## 🏃‍♂️ Running Tests
+## 🏃‍♂️ Running the Framework
 
-### Maven Commands
+### PowerShell Script
 
-```bash
-# Run all tests
-mvn test
+The easiest way to run the framework:
 
-# Run specific test class
-mvn test -Dtest=DaggerQuestTest
-
-# Clean and rebuild
-mvn clean install
-
-# Run tests with specific profile
-mvn test -Dspring.profiles.active=test
+```powershell
+cd src
+.\run_chrome_controller.ps1
 ```
 
-### VS Code Tasks
+### Manual Compilation and Execution
 
-The project includes pre-configured VS Code tasks:
+```powershell
+# Navigate to src directory
+cd src
 
-- **Maven Build:** `Ctrl+Shift+P` → "Tasks: Run Task" → "Maven Build"
-- **Maven Test:** `Ctrl+Shift+P` → "Tasks: Run Task" → "Maven Test"
+# Compile Java files
+javac -cp "..\lib\selenium-java-4.34.0\*;..\lib\webdrivermanager-6.2.0\*" *.java
 
-## 📊 Test Results and Reports
+# Run the main controller
+java -cp "..\lib\selenium-java-4.34.0\*;..\lib\webdrivermanager-6.2.0\*;." ChromeController
+```
 
-Test results are automatically generated and can be found in:
-- `target/surefire-reports/` - JUnit test reports
-- Console output with timestamps and log levels
+### Creating Custom Tests
+
+1. Create a new Java file in the `src/` directory
+2. Extend the `Methods` class for utility functions
+3. Use `Xpaths` class for element selectors
+4. Compile and run using the same classpath
+
+## 📊 Output and Logging
+
+The framework outputs information directly to the console, including:
+- WebDriver setup and browser launch status
+- Element interaction results
+- Error messages and stack traces
+- Custom debug output from your test implementations
 
 ## 🔍 Debugging
 
-### Logging Levels
+### Console Output
 
-Adjust logging levels in `logback.xml`:
-- `trace` - Very detailed debugging
-- `debug` - General debugging information
-- `info` - General information
-- `warn` - Warning messages
-- `error` - Error messages only (default)
+All output is displayed in the console where you run the framework. Monitor for:
+- WebDriver initialization messages
+- Element interaction confirmations
+- JavaScript execution results
+- Error messages and exceptions
+
+### Common Issues
+
+- **Driver Issues:** WebDriverManager should automatically handle driver downloads
+- **Element Not Found:** Check XPath selectors in `Xpaths.java`
+- **Timing Issues:** Adjust wait times in your automation scripts
 
 ## 📝 Best Practices
 
-- **Page Object Model:** Keep XPaths organized in `Xpaths.java`
-- **Method Reusability:** Use methods from `Methods.java` for common operations
-- **Clear Test Names:** Use descriptive test method names
-- **Assertions:** Always include meaningful assertion messages
-- **Clean Up:** Always call `quit()` in test teardown
+- **XPath Organization:** Keep all XPath selectors organized in `Xpaths.java`
+- **Method Reusability:** Extend the `Methods` class for common operations
+- **Clear Code Structure:** Use descriptive variable and method names
+- **Error Handling:** Always include proper exception handling
+- **Resource Cleanup:** Always call `driver.quit()` when finished
 
 ## 🛡️ Dependencies
 
-| Dependency | Version | Purpose |
-|------------|---------|---------|
-| Selenium Java | 4.32.0 | Web automation framework |
-| WebDriverManager | 6.1.0 | Automatic driver management |
-| Logback Classic | 1.5.18 | Logging framework |
-| JUnit Jupiter | Latest | Testing framework |
+| Dependency | Version | Purpose | Location |
+|------------|---------|---------|----------|
+| Selenium Java | 4.34.0 | Web automation framework | `lib/selenium-java-4.34.0/` |
+| WebDriverManager | 6.2.0 | Automatic driver management | `lib/webdrivermanager-6.2.0/` |
+
+All dependencies are included in the repository - no additional downloads required!
 
 ## 📄 License
 
