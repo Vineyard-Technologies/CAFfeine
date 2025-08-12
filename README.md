@@ -39,24 +39,12 @@ CAFfeine/
 │   └── run_chrome_controller.ps1  # PowerShell runner script
 ├── lib/
 │   ├── selenium-java-4.34.0/     # Selenium WebDriver
-│   └── webdrivermanager-6.2.0/   # WebDriver management
+│management
 ├── images/
 │   └── logo.png                   # Project assets
 ├── LICENSE                        # License file
 └── README.md                      # This file
 ```
-
-## 🔧 Configuration
-
-### Browser Configuration
-
-WebDriverManager automatically handles browser driver downloads and management. No manual driver setup required!
-
-### Dependencies
-
-All required dependencies are included in the `lib/` directory:
-- **Selenium Java 4.34.0** - Web automation framework
-- **WebDriverManager 6.2.0** - Automatic driver management
 
 ## 🧪 Writing Tests
 
@@ -66,7 +54,6 @@ All required dependencies are included in the `lib/` directory:
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class MyConstructTest extends Methods {
 
@@ -182,9 +169,7 @@ All output is displayed in the console where you run the framework. Monitor for:
 | Dependency | Version | Purpose | Location |
 |------------|---------|---------|----------|
 | Selenium Java | 4.34.0 | Web automation framework | `lib/selenium-java-4.34.0/` |
-| WebDriverManager | 6.2.0 | Automatic driver management | `lib/webdrivermanager-6.2.0/` |
 
-All dependencies are included in the repository - no additional downloads required!
 
 ## 📄 License
 
