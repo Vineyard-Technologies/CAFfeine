@@ -1,4 +1,4 @@
-![CAFfiene Logo](images/logo.png)
+![CAFfiene Logo](images/logo.webp)
 
 [![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)](https://www.java.com/)
 [![Selenium](https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=selenium&logoColor=white)](https://www.selenium.dev/)
