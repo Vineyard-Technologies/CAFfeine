@@ -15,8 +15,8 @@
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/Laserwolve-Games/ConstructAutomationFramework.git
-   cd ConstructAutomationFramework
+   git clone https://github.com/Laserwolve-Games/CAFfeine.git
+   cd CAFfeine
    ```
 
 2. **No additional setup required!** - Dependencies are included in the `lib/` directory
