@@ -15,7 +15,7 @@
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/Laserwolve-Games/CAFfeine.git
+   git clone https://github.com/Vineyard-Technologies/CAFfeine.git
    cd CAFfeine
    ```
 

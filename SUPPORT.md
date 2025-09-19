@@ -9,15 +9,15 @@ Thank you for your interest in CAFfeine! This document outlines how to get help 
 If you're experiencing issues with CAFfeine:
 
 1. **Check Documentation**: Review the [README.md](README.md) for installation and usage instructions
-2. **Browse Known Issues**: Check our [Issues](https://github.com/Laserwolve-Games/CAFfeine/issues) page for known problems and solutions
-3. **Community Discussion**: Join discussions in our [Discussions](https://github.com/Laserwolve-Games/CAFfeine/discussions) section
+2. **Browse Known Issues**: Check our [Issues](https://github.com/Vineyard-Technologies/CAFfeine/issues) page for known problems and solutions
+3. **Community Discussion**: Join discussions in our [Discussions](https://github.com/Vineyard-Technologies/CAFfeine/discussions) section
 
 ### Technical Support
 
 For technical issues, bugs, or setup problems:
 
 1. **Search Existing Issues**: Check if your issue has already been reported
-2. **Create a Bug Report**: If you find a new bug, please [open an issue](https://github.com/Laserwolve-Games/CAFfeine/issues/new) with:
+2. **Create a Bug Report**: If you find a new bug, please [open an issue](https://github.com/Vineyard-Technologies/CAFfeine/issues/new) with:
    - Clear description of the problem
    - Steps to reproduce the issue
    - Java version and system information
@@ -31,7 +31,7 @@ For questions about contributing to CAFfeine:
 
 1. **Read Contributing Guidelines**: Check our [CONTRIBUTING.md](CONTRIBUTING.md) file
 2. **Code of Conduct**: Review our [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
-3. **Start a Discussion**: Ask questions in [Discussions](https://github.com/Laserwolve-Games/CAFfeine/discussions)
+3. **Start a Discussion**: Ask questions in [Discussions](https://github.com/Vineyard-Technologies/CAFfeine/discussions)
 
 ## Contact Information
 
@@ -205,7 +205,7 @@ You can help improve support for everyone:
 
 ### Documentation
 
-- **Main Repository**: [CAFfeine](https://github.com/Laserwolve-Games/CAFfeine)
+- **Main Repository**: [CAFfeine](https://github.com/Vineyard-Technologies/CAFfeine)
 - **Installation Guide**: Setup instructions in README.md
 - **Code Examples**: Sample automation scripts
 
@@ -219,7 +219,7 @@ You can help improve support for everyone:
 ### Related Projects
 
 - **DaggerQuest**: Projects that use CAFfeine for automation
-- **Testing Frameworks**: Other Laserwolve Games testing tools
+- **Testing Frameworks**: Other Vineyard Technologies testing tools
 
 ## Best Practices
 

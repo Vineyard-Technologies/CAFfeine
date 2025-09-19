@@ -130,7 +130,7 @@ public class Methods extends Xpaths {
 			webDriverManager = WebDriverManager.chromedriver().capabilities(new ChromeOptions().setBinary(executable));
 
 		// Not currently working - Also blocked by
-		// https://github.com/Laserwolve-Games/DaggerQuest/issues/27
+		// https://github.com/Vineyard-Technologies/DaggerQuest/issues/27
 		else if (Files.exists(webview2Package))
 			webDriverManager = WebDriverManager.edgedriver().capabilities(new EdgeOptions().setBinary(executable));
 

@@ -4,9 +4,9 @@ type: software
 title: "CAFfeine"
 abstract: "An automation framework for Construct 3, providing Selenium-based testing and automation capabilities for Construct 3 game development workflows."
 authors:
-  - family-names: "Laserwolve Games"
-    email: "contact@laserwolvegames.com"
-repository-code: "https://github.com/Laserwolve-Games/CAFfeine"
+  - family-names: "Vineyard Technologies"
+    email: "contact@VineyardTechnologies.org"
+repository-code: "https://github.com/Vineyard-Technologies/CAFfeine"
 license: AGPL-3.0
 keywords:
   - "automation"
@@ -23,9 +23,9 @@ preferred-citation:
   type: software
   title: "CAFfeine: Construct Automation Framework"
   authors:
-    - family-names: "Laserwolve Games"
-      email: "contact@laserwolvegames.com"
-  repository-code: "https://github.com/Laserwolve-Games/CAFfeine"
+    - family-names: "Vineyard Technologies"
+      email: "contact@VineyardTechnologies.org"
+  repository-code: "https://github.com/Vineyard-Technologies/CAFfeine"
   version: "1.0.0"
   date-released: "2025-08-20"
   license: AGPL-3.0
