@@ -1,6 +1,7 @@
 ![CAFfiene Logo](images/logo.webp)
 
-[![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)](https://www.java.com/)
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![Selenium](https://img.shields.io/badge/Selenium-43B02A?style=for-the-badge&logo=selenium&logoColor=white)](https://www.selenium.dev/)
 
 
@@ -8,7 +9,8 @@
 
 ## 📋 Prerequisites
 
-- **Java 8+** - Java Development Kit
+- **Node.js 14+** - JavaScript runtime
+- **npm** - Node package manager (comes with Node.js)
 - **Supported Browsers** - Chrome, Edge, Firefox (drivers managed automatically)
 
 ## 🛠️ Installation
@@ -19,12 +21,14 @@
    cd CAFfeine
    ```
 
-2. **No additional setup required!** - Dependencies are included in the `lib/` directory
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-3. **Verify installation:**
-   ```powershell
-   cd src
-   .\run_chrome_controller.ps1
+3. **Run the automation:**
+   ```bash
+   node src/run_chrome_controller.js
    ```
 
 ## 📁 Project Structure
@@ -32,105 +36,104 @@
 ```
 CAFfeine/
 ├── src/
-│   ├── ChromeController.java       # Main automation controller
-│   ├── Methods.java               # Core automation methods
-│   ├── Position.java              # Position utilities
-│   ├── Xpaths.java               # XPath repository
-│   └── run_chrome_controller.ps1  # PowerShell runner script
-├── lib/
-│   ├── selenium-java-4.34.0/     # Selenium WebDriver
-│management
+│   ├── run_chrome_controller.js  # Main automation controller
+│   ├── methods.js                # Core automation methods
+│   ├── position.js               # Position utilities
+│   └── xpaths.js                 # XPath repository
 ├── images/
-│   └── logo.png                   # Project assets
-├── LICENSE                        # License file
-└── README.md                      # This file
+│   └── logo.webp                 # Project assets
+├── package.json                  # Node.js dependencies
+├── LICENSE                       # License file
+└── README.md                     # This file
 ```
 
 ## 🧪 Writing Tests
 
 ### Basic Test Structure
 
-```java
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+```javascript
+import { Builder, By } from 'selenium-webdriver';
+import { Methods } from './methods.js';
+import { Xpaths } from './xpaths.js';
 
-public class MyConstructTest extends Methods {
-
-    public static void main(String[] args) {
-        // Setup WebDriver
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver(new ChromeOptions());
+async function main() {
+    // Setup WebDriver
+    const driver = await new Builder()
+        .forBrowser('chrome')
+        .build();
+    
+    try {
+        // Create methods helper
+        const methods = new Methods(driver);
         
         // Navigate to Construct
-        driver.get("https://editor.construct.net/");
+        await driver.get('https://editor.construct.net/');
         
         // Perform test actions using Methods class
-        // (Implementation details in Methods.java)
+        await methods.dismissWelcomeDialog();
         
+        // Your test logic here...
+        
+    } finally {
         // Clean up
-        driver.quit();
+        await driver.quit();
     }
 }
+
+main().catch(console.error);
 ```
 
 ### Available Methods
 
-The `Methods` class provides numerous utility methods for browser automation:
-
-- **Browser Management:**
-  - WebDriver setup and configuration
-  - Navigation and window management
+The `Methods` class provides utility methods for browser automation:
 
 - **Element Interaction:**
-  - `click()` methods for various element types
-  - Text input and form handling
-  - Element waiting and synchronization
+  - `clickElement(xpath)` - Click elements
+  - `sendText(xpath, text, clear)` - Input text
+  - `clickableElement(xpath, seconds)` - Wait for clickable elements
 
-- **File Operations:**
-  - File upload and download handling
-  - Project management utilities
+- **JavaScript Execution:**
+  - `executeJavascript(script, ...args)` - Execute scripts in browser
+  - `getPosition(constructObject)` - Get Construct object positions
+
+- **Waiting:**
+  - `waitUntilElementIsGone(xpath, seconds)` - Wait for element removal
 
 ### XPath Management
 
-The `Xpaths` class organizes all selectors:
+The `Xpaths` object organizes all selectors:
 
-```java
+```javascript
 // Example usage
-click(Xpaths.AccountDropdown.logIn);
-click(Xpaths.Dialog.AnimationsEditor.Animations.addAnimation);
+await methods.clickElement(Xpaths.Dialog.Welcome.noThanksNotNow);
+await methods.clickElement(Xpaths.MenuDropdown.project);
 ```
 
 ## 🏃‍♂️ Running the Framework
 
-### PowerShell Script
+### Direct Execution
 
-The easiest way to run the framework:
-
-```powershell
-cd src
-.\run_chrome_controller.ps1
+```bash
+node src/run_chrome_controller.js
 ```
 
-### Manual Compilation and Execution
+### Using npm Scripts
 
-```powershell
-# Navigate to src directory
-cd src
+From the root directory:
 
-# Compile Java files
-javac -cp "..\lib\selenium-java-4.34.0\*;..\lib\webdrivermanager-6.2.0\*" *.java
-
-# Run the main controller
-java -cp "..\lib\selenium-java-4.34.0\*;..\lib\webdrivermanager-6.2.0\*;." ChromeController
+```bash
+npm start
+# or
+npm test
 ```
 
 ### Creating Custom Tests
 
-1. Create a new Java file in the `src/` directory
-2. Extend the `Methods` class for utility functions
-3. Use `Xpaths` class for element selectors
-4. Compile and run using the same classpath
+1. Create a new JavaScript file in the `src/` directory
+2. Import the `Methods` class for utility functions
+3. Import the `Xpaths` object for element selectors
+4. Use async/await patterns for all Selenium operations
+5. Run using: `node src/your_test.js`
 
 ## 📊 Output and Logging
 
@@ -158,17 +161,19 @@ All output is displayed in the console where you run the framework. Monitor for:
 
 ## 📝 Best Practices
 
-- **XPath Organization:** Keep all XPath selectors organized in `Xpaths.java`
-- **Method Reusability:** Extend the `Methods` class for common operations
-- **Clear Code Structure:** Use descriptive variable and method names
-- **Error Handling:** Always include proper exception handling
-- **Resource Cleanup:** Always call `driver.quit()` when finished
+- **XPath Organization:** Keep all XPath selectors organized in `xpaths.js`
+- **Method Reusability:** Use the `Methods` class for common operations
+- **Async/Await:** Always use async/await for Selenium operations
+- **Error Handling:** Use try/catch blocks for proper exception handling
+- **Resource Cleanup:** Always call `driver.quit()` in a finally block
+- **ES Modules:** Use import/export syntax for better code organization
 
 ## 🛡️ Dependencies
 
-| Dependency | Version | Purpose | Location |
-|------------|---------|---------|----------|
-| Selenium Java | 4.34.0 | Web automation framework | `lib/selenium-java-4.34.0/` |
+| Dependency | Version | Purpose |
+|------------|---------|---------|
+| selenium-webdriver | ^4.34.0 | Web automation framework |
+| Node.js | >=14.0.0 | JavaScript runtime |
 
 
 ## 📄 License

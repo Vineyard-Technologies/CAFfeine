@@ -1,0 +1,25 @@
+{
+  "name": "caffeine",
+  "version": "1.0.0",
+  "description": "An automation framework for Construct using Selenium JavaScript",
+  "main": "src/run_chrome_controller.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/run_chrome_controller.js",
+    "test": "node src/run_chrome_controller.js"
+  },
+  "keywords": [
+    "selenium",
+    "automation",
+    "construct",
+    "testing"
+  ],
+  "author": "Vineyard Technologies",
+  "license": "AGPL-3.0",
+  "dependencies": {
+    "selenium-webdriver": "^4.34.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
